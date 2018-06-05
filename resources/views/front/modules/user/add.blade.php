@@ -11,7 +11,7 @@
 			</ul>
 		</div>
 	@endif
-	{!! Form::open(['method'=>'POST','url'=>'save', 'class'=>'form-horizontal', 'onSubmit'=>"return validateForm()"]) !!}
+	{!! Form::open(['method'=>'POST','url'=>'visitors', 'class'=>'form-horizontal']) !!}
 	
 	<div class="form-group">
 		{!! Form::label('name', 'Name',['class'=>'col-sm-2 control-label']) !!}
