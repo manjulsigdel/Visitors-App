@@ -11,3 +11,8 @@
 |
 */
 
+$route->get('/', 'Visitor\VisitorController@add')->name('visitor-form');
+
+$route->post('/save', 'Visitor\VisitorController@save')->name('visitor-save');
+
+
