@@ -1,7 +1,10 @@
 @extends('front.layouts.main')
 
 @section('content')
+	<a class="btn btn-primary  float-right" href="/" role="button">Visitors</a>
+	
 	<h3>Visitor Form</h3>
+	
 	@if ($errors->any())
 		<div class="alert alert-danger">
 			<ul>
