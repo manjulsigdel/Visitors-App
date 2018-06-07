@@ -4,4 +4,4 @@ php:
 deploy:
   provider: heroku
   api_key:
-        secure: "38-0mhobA30AKcdffpR5LA "
+        secure: "38-0mhobA30AKcdffpR5LA"
