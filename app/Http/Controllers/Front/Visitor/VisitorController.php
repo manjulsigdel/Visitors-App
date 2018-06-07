@@ -28,6 +28,19 @@ class VisitorController
     }
 
     /**
+     * @return VisitorService
+     */
+    public function index()
+    {
+        try {
+            $visitors = $this->visitorService->getVisitors();
+            return view('front.modules.user.lists', compact('visitors'));
+        } catch (\Exception $exception) {
+            return view('front.modules.user.lists', compact('exception'));
+        }
+    }
+
+    /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function add()
@@ -45,10 +58,23 @@ class VisitorController
     {
         try {
             $visitors = $this->visitorService->saveVisitor($request->all());
-            return view('front.modules.user.show', compact('visitors'));
+            return view('front.modules.user.lists', compact('visitors'));
         } catch (\Exception $exception) {
-            $visitor = $exception;
-            return view('front.modules.user.show', compact('visitor'));
+            return view('front.modules.user.lists', compact('exception'));
         }
+    }
+
+    /**
+     * @return VisitorService
+     */
+    public function getOne($email)
+    {
+        try {
+            $visitor = $this->visitorService->getOneByEmail($email);
+            return view('front.modules.user.show', compact('visitor'));
+        } catch (\Exception $exception){
+            return view('front.modules.user.lists', compact('exception'));
+        }
+
     }
 }

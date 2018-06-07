@@ -32,16 +32,36 @@ class VisitorService
     public function saveVisitor($inputs)
     {
         $visitors = $this->repository->save(
-            array_get($inputs, 'name'),
+            trim(array_get($inputs, 'name')),
             array_get($inputs, 'gender'),
-            array_get($inputs, 'phone'),
+            trim(array_get($inputs, 'phone')),
             array_get($inputs, 'email'),
-            array_get($inputs, 'address'),
-            array_get($inputs, 'nationality'),
+            trim(array_get($inputs, 'address')),
+            trim(array_get($inputs, 'nationality')),
             array_get($inputs, 'dob'),
-            array_get($inputs, 'education'),
+            trim(array_get($inputs, 'education')),
             array_get($inputs, 'contact_type')
         );
         return $visitors;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getVisitors()
+    {
+        return $this->repository->getAllVisitors();
+    }
+
+    public function getOneByEmail($email)
+    {
+        $oneVisitor = null;
+        $visitors   = $this->getVisitors();
+        foreach ($visitors as $visitor) {
+            if ( $visitor->getEmail() === $email ) {
+                $oneVisitor = $visitor;
+            }
+        }
+        return $oneVisitor;
     }
 }

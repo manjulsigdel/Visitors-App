@@ -11,8 +11,10 @@
 |
 */
 
+$route->get('/', 'Visitor\VisitorCOntroller@index')->name('visitor-lists');
+
 $route->get('/visitors/add', 'Visitor\VisitorController@add')->name('visitor-form');
 
 $route->post('/visitors', 'Visitor\VisitorController@save')->name('visitor-save');
 
-
+$route->get('/visitors/{email}', 'Visitor\VisitorController@getOne')->name('visitor-single');
