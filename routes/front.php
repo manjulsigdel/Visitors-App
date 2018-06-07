@@ -11,7 +11,7 @@
 |
 */
 
-$route->get('/', 'Visitor\VisitorCOntroller@index')->name('visitor-lists');
+$route->get('/', 'Visitor\VisitorController@index')->name('visitor-lists');
 
 $route->get('/visitors/add', 'Visitor\VisitorController@add')->name('visitor-form');
 
