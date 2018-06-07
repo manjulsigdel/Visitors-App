@@ -1,7 +1,9 @@
 language: php
 php:
-  - 7.1.3
+- 7.1.3
 deploy:
   provider: heroku
   api_key:
-        secure: "38-0mhobA30AKcdffpR5LA "
+    secure: Q+W0fY0WFWDCPvVyKYfT2s6UBE1ilgUQY31f3QWKkLFvCk6j6JcpsnzjDbe8bxciTdNvpVSahZBTr9TpGPuKiUi1DYdYuRBEICHjNQ7VORktMGn3YW4GtY4F6Y5l6zBUS+mOvl7irJHpSd3i+Ih9MYgSvSvTruyr2Y9KT3Wv7pdVArGyS+R0lninLLcuxuTJP+WZ1HjyyPcCKEOkHwHqpCJU0/29wXZGlH9P5i9I0sCy7OfVzPv46Q2HyYT3qmEom5IVBBNdcsD59mJJGrvHQYHQx0HYKSh5RX+KQxqBYEVprv1nfquYm3V5879Cg9jpFN3fz9tmWFfcgFu9fOGbGRgIQUsi4FRgXb4aydU+c2mNapFhoq2XfdXWL6aP02YjcFIqtuENuDgCiGZI++wXBKXLz0zcyEMiSTnEmNue9CgNOQynLSG5fObVZgr8ihvbsaYqbi+rfenhrqL9Icb0a7VlKUPgPNb8vOwVJ4Riw+noumVPWuXBGlGY03/ozDHA4C1a3ZV08VXiJBxBVmq6i/y6WxaKgzYSXKcluZfUL5AOym5vUP4QlL3sUziMvtEixbVOSb5tnUWbxHjXwmR09tt33oPEfTHXFk/xOkpBz+lttaGzhTSWdbK13jcEPRnq1jgUv5p+8JhEUyRg8q80Qh5Vc4x+/l0arePqHEb0/D0=
+php:
+  - nightly
