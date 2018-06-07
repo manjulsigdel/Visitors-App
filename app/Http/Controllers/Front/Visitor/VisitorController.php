@@ -36,7 +36,7 @@ class VisitorController
             $visitors = $this->visitorService->getVisitors();
             return view('front.modules.user.lists', compact('visitors'));
         } catch (\Exception $exception) {
-            return view('front.modules.user.lists', compact('exception'));
+            return view('error');
         }
     }
 
@@ -57,10 +57,12 @@ class VisitorController
     public function save(VisitorCreateRequest $request)
     {
         try {
-            $visitors = $this->visitorService->saveVisitor($request->all());
-            return view('front.modules.user.lists', compact('visitors'));
+            $request->session()->flash('alert-success', 'Visitor was saved successfully!');
+            $this->visitorService->saveVisitor($request->all());
+            return redirect()->route('front.visitor-lists');
         } catch (\Exception $exception) {
-            return view('front.modules.user.lists', compact('exception'));
+            $request->session()->flash('alert-failure', 'Couldnot save visitor.!');
+            return redirect()->route('front.visitor-lists');
         }
     }
 
@@ -72,8 +74,8 @@ class VisitorController
         try {
             $visitor = $this->visitorService->getOneByEmail($email);
             return view('front.modules.user.show', compact('visitor'));
-        } catch (\Exception $exception){
-            return view('front.modules.user.lists', compact('exception'));
+        } catch (\Exception $exception) {
+            return view('error');
         }
 
     }

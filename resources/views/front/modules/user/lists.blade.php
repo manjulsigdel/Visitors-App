@@ -4,6 +4,10 @@
 	
 	<a class="btn btn-primary  float-right" href="/visitors/add" role="button">Add Visitor</a>
 	
+	@if(Session::has('alert-success'))
+		<p class="alert alert-success">{{Session::get('alert-success')}}</p>
+	@endif
+	
 	<h3>Visitors</h3>
 	
 	<table class="table">
