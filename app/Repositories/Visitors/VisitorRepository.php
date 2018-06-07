@@ -17,6 +17,9 @@ class VisitorRepository implements IVisitorsRepository
      */
     public function getAllVisitors()
     {
+        if ( !Storage::disk('local')->exists('visitors.csv') ) {
+            return [];
+        }
         $visitorsCsv      = Storage::disk('local')->get('visitors.csv');
         $visitorsCsvArray = explode("\n", $visitorsCsv);
         $visitorsArray    = [];
