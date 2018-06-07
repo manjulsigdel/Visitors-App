@@ -14,7 +14,7 @@
 			</ul>
 		</div>
 	@endif
-	{!! Form::open(['method'=>'POST','url'=>'visitors', 'class'=>'form-horizontal']) !!}
+	{!! Form::open(['method'=>'POST','route'=>'front.visitor-save', 'class'=>'form-horizontal']) !!}
 	
 	<div class="form-group">
 		{!! Form::label('name', 'Name',['class'=>'col-sm-2 control-label']) !!}
