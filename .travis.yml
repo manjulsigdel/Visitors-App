@@ -1,9 +1,12 @@
 language: php
 php:
-  - 7.1.3
+- 7.1.3
 deploy:
   provider: heroku
   api_key:
-    secure: "38-0mhobA30AKcdffpR5LA"
+    secure: PdM31UknhRPrme8T5Femkzmb9oDJbPptZCqIpQcIbHONfhSakWEKYpv68GMPFZFOYAauJCwrsQBV9PxKjdtQQtoUIxvVz4YGWHTmxYxJr3L2kv9ekbnKtVkY2bx9Ubh1DjLksrj+4Wgm/VNTb48WSnMw7XVhofqCJG1bQyqu19SqnBMbieohIbV1/1j7vEtY9xfsFchMbcdlprC7J9Ka6+r8RJ941uadT+eKgRb3L0lDhR7EuMRnIV1TcIynAXSbdsRhYKlfhirCklQYQIRHgG/GYFt7D1AneZl3htSsnVnBv4EMhpj7s3HS52vtdkyZXosAJBNqiEx4mij9qwyi6o29Frb8YJoGo8jVNxCYYieahZBeS1Qd66npCG7d/DDuP30BtFAZbEmfQ6zbz3FhulAwNQrv+liZ77yebA6FnXfBh5v6LqZaG+wT8rVxYvX9phIVEMtltE4MZ1SzE3bPyFXIlyYcxot2CdWH+xWUPp6T4Zc2Yx4gLMRyOZHQyIaYpx86CT7mA0emRcXFzykdNoYHN8q4qA/J5Zt1CdPtz4dK0i5AYbC11n9ZdQvnIHFAwMYH5M2Op7OfKoxhb5oVu7LYenwbtEPZiJ7DiCnAbML365sFgEUHsss9xDQR5vRwpkLEgp859WNvadlldaXRBZ9WErbTLvAGpsrFwA5b47g=
+  app: Visitors-App
+  on:
+    repo: manjulsigdel/Visitors-App
 before_script: composer require atoum/atoum
 script: vendor/bin/atoum
