@@ -28,7 +28,7 @@ class VisitorCreateRequest extends FormRequest
             'name' => 'required',
             'gender'=>'required',
             'phone'=>'required',
-            'email'=>'required',
+            'email'=>'required|email',
             'address'=>'required',
             'nationality'=>'required',
             'dob'=>'required',
