@@ -19,6 +19,9 @@
 			<th>Action</th>
 		</tr>
 		@php($count =1)
+		@if(count($visitors) === 0)
+			<h4>No visitors yet. Be the first. Please click Add Visitor button on right top of the page.</h4>
+		@endif
 		@foreach($visitors as $visitor)
 			<tr>
 				<td>{!! $count++ !!}</td>
