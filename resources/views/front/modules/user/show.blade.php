@@ -1,9 +1,9 @@
 @extends('front.layouts.main')
 
 @section('content')
-	<a class="btn btn-primary  float-right" href="/" role="button">Visitors</a>
+	<a class="btn btn-primary  float-right" href="{{route('front.visitor-lists')}}" role="button">Visitors</a>
 	
-	<a class="btn btn-primary  float-right" href="/visitors/add" role="button">Add Visitor</a>
+	<a class="btn btn-primary  float-right" href="{{route('front.visitor-form')}}" role="button">Add Visitor</a>
 	
 	<h3>Visitor Information</h3>
 	<div class="row">

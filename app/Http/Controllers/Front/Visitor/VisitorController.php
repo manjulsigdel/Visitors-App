@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Front\Visitor;
 use App\Domain\Front\Requests\Visitors\VisitorCreateRequest;
 use App\Domain\Front\Services\Visitors\VisitorService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\URL;
 
 
 /**
@@ -30,13 +31,15 @@ class VisitorController
     /**
      * @return VisitorService
      */
-    public function index()
+    public function index(Request $request)
     {
         try {
-            $visitors = $this->visitorService->getVisitors();
+            $page     = empty($request->query('page')) ? 1 : (int) $request->query('page');
+            $visitors = $this->visitorService->getVisitors($page);
+//            return response($visitors);
             return view('front.modules.user.lists', compact('visitors'));
         } catch (\Exception $exception) {
-            return view('error');
+            return view('error', compact('exception'));
         }
     }
 
