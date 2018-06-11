@@ -18,11 +18,13 @@
 			<th>Nationality</th>
 			<th>Action</th>
 		</tr>
+		
 		@php($count =1)
-		@if($visitors['links']['total'] === 0)
+		{{--		{!! $visitors['links']['total'] !!}--}}
+		@if(array_get($visitors, 'visitors.total', 0) === 0)
 			<h4>No visitors yet. Be the first. Please click Add Visitor button on right top of the page.</h4>
 		@endif
-		@foreach($visitors['visitors'] as $visitor)
+		@foreach(array_get($visitors, 'visitors', []) as $visitor)
 			<tr>
 				<td>{!! $count++ !!}</td>
 				<td>{!! $visitor->getName() !!}</td>
@@ -32,14 +34,13 @@
 			</tr>
 		@endforeach
 	</table>
-	{!! $visitors['links']['next_page_url'] !!}
 	<nav aria-label="Page navigation example">
 		<ul class="pagination">
-			<li class="page-item {!! $visitors['links']['prev_page_url'] === null ? 'disabled' : '' !!}">
-				<a class="page-link" href="{!! $visitors['links']['prev_page_url'] !!}">Previous</a>
+			<li class="page-item {!! array_get($visitors, 'links.prev_page_url') === null ? 'disabled' : '' !!}">
+				<a class="page-link" href="{!! array_get($visitors, 'links.prev_page_url') !!}">Previous</a>
 			</li>
-			<li class="page-item {!! $visitors['links']['next_page_url'] === null ? 'disabled' : '' !!}">
-				<a class="page-link" href="{!! $visitors['links']['next_page_url'] !!}">Next</a>
+			<li class="page-item {!! array_get($visitors, 'links.next_page_url') === null ? 'disabled' : '' !!}">
+				<a class="page-link" href="{!! array_get($visitors, 'links.next_page_url') !!}">Next</a>
 			</li>
 		</ul>
 	</nav>
