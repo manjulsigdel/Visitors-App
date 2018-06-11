@@ -48,16 +48,21 @@ class VisitorService
     /**
      * @return mixed
      */
-    public function getVisitors()
+    public function getVisitors($page = 1)
     {
-        return $this->repository->getAllVisitors();
+        return $this->repository->getAllVisitors($page);
     }
 
+    /**
+     * @param $email
+     *
+     * @return null
+     */
     public function getOneByEmail($email)
     {
         $oneVisitor = null;
         $visitors   = $this->getVisitors();
-        foreach ($visitors as $visitor) {
+        foreach ($visitors['visitors'] as $visitor) {
             if ( $visitor->getEmail() === $email ) {
                 $oneVisitor = $visitor;
             }
