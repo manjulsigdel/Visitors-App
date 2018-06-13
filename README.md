@@ -14,4 +14,7 @@ A simple application which saves visitor information in csv format. can be found
  3) Blade Engine is used as front end template
  4) CI integration via https://travis-ci.org/ and automated deploy to Heroku
  4) Test is done before CI via https://github.com/atoum/atoum
- 5) Tested in code quality checking service https://codeclimate.com/
+ 5) Tested in code quality checking service https://codeclimate.com/github/manjulsigdel/Visitors-App
+ 6) Pagination Implemented In Visitors List
+ 7) Get each visitor by email
+ 8) Application Level Logging is implemented in https://insight.rapid7.com/
