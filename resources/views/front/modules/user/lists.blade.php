@@ -2,11 +2,11 @@
 
 @section('content')
 	
-	<a class="btn btn-primary  float-right" href="{{route('front.visitor-form')}}" role="button">Add Visitor</a>
-	
 	@if(Session::has('alert-success'))
-		<p class="alert alert-success">{{Session::get('alert-success')}}</p>
+		<p class="alert alert-success position-relative">{{Session::get('alert-success')}}</p>
 	@endif
+	
+	<a class="btn btn-primary position-relative float-right" href="{{route('front.visitor-form')}}" role="button">Add Visitor</a>
 	
 	<h3>Visitors</h3>
 	
@@ -20,8 +20,7 @@
 		</tr>
 		
 		@php($count =1)
-		{{--		{!! $visitors['links']['total'] !!}--}}
-		@if(array_get($visitors, 'visitors.total', 0) === 0)
+		@if(array_get($visitors, 'links.total', 0) === 0)
 			<h4>No visitors yet. Be the first. Please click Add Visitor button on right top of the page.</h4>
 		@endif
 		@foreach(array_get($visitors, 'visitors', []) as $visitor)

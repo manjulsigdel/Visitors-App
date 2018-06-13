@@ -5,6 +5,7 @@ namespace App\Repositories\Visitors;
 
 interface IVisitorsRepository
 {
-    public function save($name, $gender, $phone, $email, $address, $nationality, $dob, $education, $contact_type);
-    public function getAllVisitors($page);
+    public function save(array $visitorArray): bool;
+    public function getPaginatedVisitors(int $page, int $perPage): array;
+    public function getAllVisitors(): array ;
 }
