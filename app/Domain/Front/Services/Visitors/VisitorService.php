@@ -71,7 +71,7 @@ class VisitorService
     {
         $oneVisitor = null;
         $visitors   = $this->getAllVisitors();
-        foreach ($visitors['visitors'] as $visitor) {
+        foreach ($visitors as $visitor) {
             if ( $visitor->getEmail() === $email ) {
                 $oneVisitor = $visitor;
             }
