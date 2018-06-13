@@ -3,6 +3,9 @@
 namespace App\Domain\Front\Services\Visitors;
 
 
+use App\Constants\Config;
+use App\Entities\Visitors\Visitor;
+use App\Jobs\Logs\CreateInsightOpsLog;
 use App\Repositories\Visitors\IVisitorsRepository;
 
 /**
@@ -29,44 +32,78 @@ class VisitorService
      *
      * @return array
      */
-    public function saveVisitor($inputs)
+    public function saveVisitor($inputs): array
     {
-        $visitors = $this->repository->save(
-            trim(array_get($inputs, 'name')),
-            array_get($inputs, 'gender'),
-            trim(array_get($inputs, 'phone')),
-            array_get($inputs, 'email'),
-            trim(array_get($inputs, 'address')),
-            trim(array_get($inputs, 'nationality')),
-            array_get($inputs, 'dob'),
-            trim(array_get($inputs, 'education')),
-            array_get($inputs, 'contact_type')
-        );
+        $visitorData = $this->setVisitorData($inputs);
+
+        $this->repository->save($visitorData);
+
+        $this->saveCreatedVisitorLogInInsightOps("Visitor Created Successfully");
+
+        $visitors = $this->getPaginatedVisitors(1, Config::PAGINATE_SMALL);
+
         return $visitors;
     }
 
     /**
      * @return mixed
      */
-    public function getVisitors($page = 1)
+    public function getPaginatedVisitors($page = 1, $perPage = null): array
     {
-        return $this->repository->getAllVisitors($page);
+        return $this->repository->getPaginatedVisitors($page, $perPage);
     }
+
+    /**
+     * @return array
+     */
+    public function getAllVisitors(): array
+    {
+        return $this->repository->getAllVisitors();
+    }
+
 
     /**
      * @param $email
      *
      * @return null
      */
-    public function getOneByEmail($email)
+    public function getOneByEmail($email): Visitor
     {
         $oneVisitor = null;
-        $visitors   = $this->getVisitors();
+        $visitors   = $this->getAllVisitors();
         foreach ($visitors['visitors'] as $visitor) {
             if ( $visitor->getEmail() === $email ) {
                 $oneVisitor = $visitor;
             }
         }
         return $oneVisitor;
+    }
+
+    /**
+     *
+     */
+    public function saveCreatedVisitorLogInInsightOps(string $message)
+    {
+        dispatch(new CreateInsightOpsLog($message));
+    }
+
+    /**
+     * @param array $inputs
+     *
+     * @return array
+     */
+    public function setVisitorData(array $inputs): array
+    {
+        return [
+            'name'         => trim(array_get($inputs, 'name')),
+            'gender'       => array_get($inputs, 'gender'),
+            'phone'        => trim(array_get($inputs, 'phone')),
+            'email'        => array_get($inputs, 'email'),
+            'address'      => trim(array_get($inputs, 'address')),
+            'nationality'  => trim(array_get($inputs, 'nationality')),
+            'dob'          => array_get($inputs, 'dob'),
+            'education'    => trim(array_get($inputs, 'education')),
+            'contact_type' => array_get($inputs, 'contact_type'),
+        ];
     }
 }

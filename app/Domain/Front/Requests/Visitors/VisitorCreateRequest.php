@@ -3,6 +3,8 @@
 namespace App\Domain\Front\Requests\Visitors;
 
 
+use App\Domain\Front\Services\Visitors\VisitorService;
+use App\Rules\UniqueEmail;
 use Illuminate\Foundation\Http\FormRequest;
 
 class VisitorCreateRequest extends FormRequest
@@ -28,7 +30,7 @@ class VisitorCreateRequest extends FormRequest
             'name' => 'required',
             'gender'=>'required',
             'phone'=>'required',
-            'email'=>'required|email',
+            'email'=>['required', 'email', new UniqueEmail(app(VisitorService::class))],
             'address'=>'required',
             'nationality'=>'required',
             'dob'=>'required',

@@ -8,6 +8,7 @@ namespace App\Entities\Visitors;
  */
 class Visitor
 {
+
     /**
      * @var
      */
@@ -45,30 +46,23 @@ class Visitor
      */
     private $contact_type;
 
+
     /**
      * Visitor constructor.
      *
-     * @param $name
-     * @param $gender
-     * @param $phone
-     * @param $email
-     * @param $address
-     * @param $nationality
-     * @param $dob
-     * @param $education
-     * @param $contact_type
+     * @param array $visitor
      */
-    public function __construct($name, $gender, $phone, $email, $address, $nationality, $dob, $education, $contact_type)
+    public function __construct(array $visitor)
     {
-        $this->name         = $name;
-        $this->gender       = $gender;
-        $this->phone        = $phone;
-        $this->email        = $email;
-        $this->address      = $address;
-        $this->nationality  = $nationality;
-        $this->dob          = $dob;
-        $this->education    = $education;
-        $this->contact_type = $contact_type;
+        $this->name         = array_get($visitor, 'name', null);
+        $this->gender       = array_get($visitor, 'gender', null);
+        $this->phone        = array_get($visitor, 'phone', null);
+        $this->email        = array_get($visitor, 'email', null);
+        $this->address      = array_get($visitor, 'address', null);
+        $this->nationality  = array_get($visitor, 'nationality', null);
+        $this->dob          = array_get($visitor, 'dob', null);
+        $this->education    = array_get($visitor, 'education', null);
+        $this->contact_type = array_get($visitor, 'contact_type', null);
     }
 
     /**

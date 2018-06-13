@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Front\Visitor;
 
+use App\Constants\Config;
 use App\Domain\Front\Requests\Visitors\VisitorCreateRequest;
 use App\Domain\Front\Services\Visitors\VisitorService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\URL;
 
 
@@ -35,7 +37,7 @@ class VisitorController
     {
         try {
             $page     = empty($request->query('page')) ? 1 : (int) $request->query('page');
-            $visitors = $this->visitorService->getVisitors($page);
+            $visitors = $this->visitorService->getPaginatedVisitors($page, Config::PAGINATE_SMALL);
 //            return response($visitors);
             return view('front.modules.user.lists', compact('visitors'));
         } catch (\Exception $exception) {
@@ -62,8 +64,12 @@ class VisitorController
         try {
             $request->session()->flash('alert-success', 'Visitor was saved successfully!');
             $this->visitorService->saveVisitor($request->all());
+
+            logger()->info("Visitor created successfully");
+
             return redirect()->route('front.visitor-lists');
         } catch (\Exception $exception) {
+            logger()->error($exception);
             $request->session()->flash('alert-failure', 'Couldnot save visitor.!');
             return redirect()->route('front.visitor-lists');
         }
